@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main-mio.css" />
+</head>
+<body>
+    
+    <form action="">
+
+        <label for="cantidad-de-familiares"> cantidad de familiares: </label>
+        <input type="number" name="cantidad-de-familiares" id="cantidad-de-familiares">
+
+        <button type="submit" id="adelante">Adelante</button>
+    </form>
+
+    <ul id="pedir-edades"></ul>
+    
+    <button type="button" id="calcular" class="oculto">Calcular</button>
+
+    <div id="analisis" class="oculto">
+        <p>La edad mayor es: <strong id="mayor-edad"></strong></p>
+        <p>La edad menor es: <strong id="menor-edad"></strong></p>
+        <p>La edad promedio es: <strong id="promedio-edad"></strong></p>
+
+        <button id="reset">Reset</button>
+    </div>
+
+    <script src="js.js"></script>
+</body>
+</html>
