@@ -19,10 +19,9 @@ Punto bonus: si hay inputs vacíos, ignorarlos en el cálculo (no contarlos como
 
 function borrarEdadesDeIntegrantes() {
     let edades = document.querySelectorAll('li');
-    let padre = document.querySelector('#pedir-edades')
 
     for (let i = 0; i < edades.length; i++) {
-        document.querySelectorAll('li')[0].remove();
+        edades[i].remove();
     }
 
 }
