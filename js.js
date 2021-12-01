@@ -76,6 +76,7 @@ function mostrarInputsEdades(cantidadFamiliares) {
         let li = document.createElement('li')
         let label = document.createElement('label')
         let input = document.createElement('input')
+        input.type = 'number'
 
         label.innerText = `${i + 1}) Ingrese edad: `
         input.id = 'edad'
@@ -124,7 +125,7 @@ function validarEdades() {
     // /^[0-9]+$/.test(edades[index].value)
     errores = 0;
     edades.forEach(function (value, index) {
-        if (!/^[0-9]+$/.test(edades[index].value) &&edades[index].value < 1) {
+        if (!/^[0-9]+$/.test(edades[index].value) || edades[index].value < 1 || edades[index].value ===Math.floor(edades[index].value)) {
 
             // edades[index].classList = 'error';
 
@@ -144,15 +145,15 @@ document.querySelector('#adelante').onclick = function (e) {
     let cantidadFamiliares = $cantidadFamiliares.value;
     let pedidoDeEdades = document.querySelector('#edad');
 
-    if(!/^[0-9]+$/.test(cantidadFamiliares)){
+    if(!/^[0-9]+$/.test(cantidadFamiliares) || cantidadFamiliares <1){
         marcarError($cantidadFamiliares);
-        alert('Sólo se aceptan números');
+        alert('Sólo se aceptan números, y que sean mayores a 0');
     }
     else{
         desmarcarError($cantidadFamiliares);   
-    }
-    if (!pedidoDeEdades && cantidadFamiliares > 0) {
-        mostrarInputsEdades(cantidadFamiliares);
+        if (!pedidoDeEdades && cantidadFamiliares > 0) {
+            mostrarInputsEdades(cantidadFamiliares);
+        }
     }
     e.preventDefault();
 };
