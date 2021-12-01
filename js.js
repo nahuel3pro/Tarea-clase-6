@@ -100,11 +100,11 @@ function mostrarAnalisis() {
     document.querySelector('#analisis').className = ''
 }
 
-function rellenarAnalisis() {
+function rellenarAnalisis(edades) {
 
-    document.querySelector('#promedio-edad').textContent = calcularPromedio(document.querySelectorAll('#edad'));
-    document.querySelector('#mayor-edad').textContent = calcularMayor(document.querySelectorAll('#edad'));
-    document.querySelector('#menor-edad').textContent = calcularMenor(document.querySelectorAll('#edad'));
+    document.querySelector('#promedio-edad').textContent = calcularPromedio(edades);
+    document.querySelector('#mayor-edad').textContent = calcularMayor(edades);
+    document.querySelector('#menor-edad').textContent = calcularMenor(edades);
 
 }
 
@@ -120,8 +120,7 @@ function desmarcarError($desmarcar){
 
 }
 
-function validarEdades() {
-    let edades = document.querySelectorAll('#edad');
+function validarEdades(edades) {
     // /^[0-9]+$/.test(edades[index].value)
     errores = 0;
     edades.forEach(function (value, index) {
@@ -161,10 +160,12 @@ document.querySelector('#adelante').onclick = function (e) {
 
 document.querySelector('#calcular').onclick = function () {
 
-    if (!validarEdades()) {
+    let edades = document.querySelectorAll('#edad')
+
+    if (!validarEdades(edades)) {
         ocultarCampoInputsEdades();
         mostrarAnalisis();
-        rellenarAnalisis();
+        rellenarAnalisis(edades);
     }
     else {
         alert('Las edades tienen que tener valores válidos');
