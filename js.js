@@ -107,13 +107,51 @@ function rellenarAnalisis() {
 
 }
 
+function marcarError($marcar){
+
+    $marcar.classList = 'error'
+
+}
+
+function desmarcarError($desmarcar){
+
+    $desmarcar.classList = ''
+
+}
+
+function validarEdades() {
+    let edades = document.querySelectorAll('#edad');
+    // /^[0-9]+$/.test(edades[index].value)
+    errores = 0;
+    edades.forEach(function (value, index) {
+        if (!/^[0-9]+$/.test(edades[index].value) &&edades[index].value < 1) {
+
+            // edades[index].classList = 'error';
+
+            marcarError(edades[index]);
+            errores++
+        }
+        else {
+            desmarcarError(edades[index]);
+        }
+    });
+
+    return errores;
+}
+
 document.querySelector('#adelante').onclick = function (e) {
-    let cantidadFamiliares = document.querySelector('#cantidad-de-familiares').value;
-    let pedidoDeEdades = document.querySelector('#edad')
+    let $cantidadFamiliares = document.querySelector('#cantidad-de-familiares')
+    let cantidadFamiliares = $cantidadFamiliares.value;
+    let pedidoDeEdades = document.querySelector('#edad');
 
-
+    if(!/^[0-9]+$/.test(cantidadFamiliares)){
+        marcarError($cantidadFamiliares);
+        alert('Sólo se aceptan números');
+    }
+    else{
+        desmarcarError($cantidadFamiliares);   
+    }
     if (!pedidoDeEdades && cantidadFamiliares > 0) {
-        console.log('opciones')
         mostrarInputsEdades(cantidadFamiliares);
     }
     e.preventDefault();
@@ -121,9 +159,16 @@ document.querySelector('#adelante').onclick = function (e) {
 
 
 document.querySelector('#calcular').onclick = function () {
-    ocultarCampoInputsEdades();
-    mostrarAnalisis();
-    rellenarAnalisis();
+
+    if (!validarEdades()) {
+        ocultarCampoInputsEdades();
+        mostrarAnalisis();
+        rellenarAnalisis();
+    }
+    else {
+        alert('Las edades tienen que tener valores válidos');
+    }
+
 }
 
 
